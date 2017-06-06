@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body,textarea,p,ul{
+				margin: 0;
+				padding: 0;
+			}
+			li{
+				list-style: none;
+				background: red;
+				width: 10px;
+				height: 10px;
+				float: left;
+				margin-right: 3px;
+			}
+			ul{
+				margin-top: 20px;
+				margin-left: 40px;
+				opacity: 0;
+			}
+			p{
+				width: 175px;
+				height: 40px;
+				font:20px/40px "微软雅黑";
+				text-align: center;
+			}
+			#wrap{
+				width: 800px;
+				height:280px;
+				border: 10px solid #000000;
+				padding:10px;
+				position: relative;
+			}
+			textarea{
+				width: 300px;
+				height: 280px;
+				background: #CCCCCC;
+				border: 1px dotted #000000;
+				position: absolute;
+				left:0;
+				top: 0;
+			}
+			#wrap .divL{
+				width: 302px;
+				height: 282px;
+				float: left;
+				position: relative;
+			}
+			#wrap .divC{
+				width: 175px;
+				height: 280px;
+				margin-right: 10px;
+				margin-left: 10px;
+				float: left;
+			}
+			#wrap .divR{
+				width: 300px;
+				height: 280px;
+				border: 1px dotted #000000;
+				background: #00FFFF;
+				word-wrap: break-word;
+				position:absolute;
+				right: 10px;
+				top: 10px;
+			}
+			button{
+				width: 175px;
+				height: 40px;
+				background: #FF6600;
+				border: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div class="divL">
+				<textarea></textarea>
+			</div>
+			<div class="divC">
+				<button>把文字右移</button>
+				<p><span>0</span>/<span>0</span></p>
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+			<div class="divR"></div>
+		</div>
+		<script src="jsLib.js"></script>
+		<script >
+			var oText=$("textarea")[0];
+			var btn =$("button")[0];
+			var n = 0 ;
+			var op =$("p");
+			var odiv=$("div");
+			var ospan=$("span");
+			var m = 0;
+			var oli=$("li");
+			var oul=$("ul")[0];
+			btn.onclick=function(){
+				var str = oText.value;
+					if(wrap.timer){
+						return
+					}
+						if(str.length){
+							ospan[1].innerHTML=str.length;
+							opacity(oul,.04,1)
+							wrap.timer =setInterval(function(){
+								oText.value = str.substr(n);
+								odiv[3].innerHTML=str.substr(0,n);
+								ospan[0].innerHTML=n;
+								n++;
+								if(n==str.length+1){
+									n=0;
+									clearInterval(wrap.timer);
+									wrap.timer=null;
+									opacity(oul,.04,0)
+								}
+								for (var i=0;i<8;i++) {
+									oli[i].style.background="";
+								}
+								m++;
+								if(m==8){
+									m=0;
+								}
+								oli[m].style.background="yellow";
+							},100)
+						}
+							
+					}
+		</script>
+	</body>
+</html>
